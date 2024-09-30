@@ -1,5 +1,7 @@
 package ie.atu.lambda;
 
+import java.util.function.Function;
+
 public class Main {
     public static void main(String[] args) {
         //MathOperation addition = new Addition();
@@ -34,6 +36,17 @@ public class Main {
         
         int result = square.calculate(4);
         System.out.println("Square of 4 is: " + result);
+
+        Function<String, String> trim = s -> s.trim();
+        Function<String, String> replaceSpaces = s -> s.replace(" ", "-");
+        Function<String, String> toLowerCase = s -> s.toLowerCase();
+
+        // Combine the lambdas
+        Function<String, String> combinedOperation = trim.andThen(replaceSpaces).andThen(toLowerCase);
+
+        // Test the combined operation
+        String resultb = combinedOperation.apply("   Hello World From Lambda   ");
+        System.out.println("Result: " + resultb);
     }
 
 }
